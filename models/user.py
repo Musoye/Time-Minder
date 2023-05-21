@@ -1,12 +1,22 @@
 #!/usr/bin/python3
 """User Model"""
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from datetime import datetime
+from sqlalchemy import Column, String, Boolean
+from sqlalchemy.orm import relationship
 from hashlib import md5
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     """User Model"""
+    __tablename__ = 'users'
+    email = Column(String(128), nullable=False)
+    password = Column(String(128), nullable=False)
+    first_name = Column(String(128), nullable=True)
+    last_name = Column(String(128), nullable=True)
+    is_suscribe = Column(Boolean, default=True)
+    projects = relationship("Project", backref="user")
+    tasks = relationship("Task", backref="user")
 
     def __init__(self):
         """The constructor Model"""
