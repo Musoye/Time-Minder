@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ objects that handle all default RestFul API actions for Users"""
 from models.project import Project
+from models.task import Task
 from models import storage
 from api.views import app_views
 from flask import abort, jsonify, make_response, request
@@ -87,3 +88,16 @@ def put_project(project_id):
             setattr(user, key, value)
     storage.save()
     return make_response(jsonify(user.to_dict()), 200)
+
+@app_views.route('/projects/<project_id>/tasks', methods=['GET'], strict_slashes=False)
+def get_all_projects_task(project_id):
+    """
+    Retrieves the list of all tasks objects
+    with a specific project
+    """
+    all_users = storage.all(Task).values()
+    list_users = []
+    for user in all_users:
+        if project_id == user.project_id:
+            list_users.append(user.to_dict())
+    return jsonify(list_users)
