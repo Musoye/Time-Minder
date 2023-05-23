@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ objects that handle all default RestFul API actions for Users"""
 from models.user import User
+from models.project import Project
 from models import storage
 from api.views import app_views
 from flask import abort, jsonify, make_response, request
@@ -94,9 +95,9 @@ def get_all_user_projects(user_id):
     Retrieves the list of all user objects
     with a specific project
     """
-    all_users = storage.all(User).values()
+    all_users = storage.all(Project).values()
     list_users = []
     for user in all_users:
-        if user_id == user.id:
+        if user_id == user.user_id:
             list_users.append(user.to_dict())
     return jsonify(list_users)
