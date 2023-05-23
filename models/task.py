@@ -1,8 +1,11 @@
 #!/usr/bin/Python4
 """task model"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Boolean,ForeignKey
+from sqlalchemy import Column, String, Boolean,ForeignKey, DateTime
 from sqlalchemy.orm import relationship
+from datetime import datetime, timedelta
+
+expired = datetime.now() + timedelta(days=3)
 
 
 class Task(BaseModel, Base):
@@ -14,6 +17,7 @@ class Task(BaseModel, Base):
     status = Column(String(16), nullable=False)
     description = Column(String(128), nullable=True)
     sent = Column(Boolean, default=False)
+    expiry_date = Column(DateTime, default=expired)
     is_priority = Column(Boolean, default=False)
     users = relationship("User", backref="task")
     projects = relationship("Project", backref="task")

@@ -16,7 +16,6 @@ def get_users():
     list_users = []
     for user in all_users:
         list_users.append(user.to_dict())
-    print(all_users)
     return jsonify(list_users)
 
 
@@ -88,3 +87,16 @@ def put_user(user_id):
             setattr(user, key, value)
     storage.save()
     return make_response(jsonify(user.to_dict()), 200)
+
+@app_views.route('/users/<user_id>/projects', methods=['GET'], strict_slashes=False)
+def get_all_user_projects(user_id):
+    """
+    Retrieves the list of all user objects
+    with a specific project
+    """
+    all_users = storage.all(User).values()
+    list_users = []
+    for user in all_users:
+        if user_id == user.id:
+            list_users.append(user.to_dict())
+    return jsonify(list_users)

@@ -1,8 +1,11 @@
 #!/usr/bin/Python3
 """Project  model"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Boolean,ForeignKey
+from sqlalchemy import Column, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
+from datetime import datetime, timedelta
+
+expired = datetime.now() + timedelta(days=3)
 
 
 class Project(BaseModel, Base):
@@ -12,6 +15,7 @@ class Project(BaseModel, Base):
     name = Column(String(128), nullable=False)
     description = Column(String(128), nullable=True)
     sent = Column(Boolean, default=False)
+    expiry_date = Column(DateTime, default=expired)
     is_priority = Column(Boolean, default=False)
     users = relationship("User", backref="project")
 
