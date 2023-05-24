@@ -4,10 +4,12 @@ import models
 from os import environ
 from api.views import app_views
 from flask import Flask, make_response, jsonify
+from flask_cors import CORS
 
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
+CORS(app, resources={r"/api/*": {"origins": ["http://127.0.0.1", "http://0.0.0.0"]}})
 
 @app.teardown_appcontext
 def close_db(error):
