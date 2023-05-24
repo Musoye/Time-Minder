@@ -22,4 +22,4 @@ class Project(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         """The project constructor class"""
-        super.__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)

@@ -24,4 +24,4 @@ class Task(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         """The task constructor class"""
-        super().__init(*args, **kwargs)
+        super().__init__(*args, **kwargs)
