@@ -18,10 +18,10 @@ class User(BaseModel, Base):
     projects = relationship("Project", backref="user")
     tasks = relationship("Task", backref="user")
 
-    def __init__(self):
-        """The constructor Model"""
+    def __init__(self, *args, **kwargs):
+        """The constructor Model for User"""
         self.updated_at = datetime.now()
-        super().__init__()
+        super().__init__(*args, **kwargs)
     
     def __setattr__(self, name, value):
         """To convert password to hash value"""

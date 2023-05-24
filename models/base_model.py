@@ -34,7 +34,7 @@ class BaseModel:
                 self.id = str(uuid4())
         else:
             self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
+            self.created_at = datetime.now()
             self.updated_at = self.created_at
     
     def to_dict(self):

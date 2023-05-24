@@ -22,6 +22,6 @@ class Task(BaseModel, Base):
     users = relationship("User", backref="task")
     projects = relationship("Project", backref="task")
 
-    def __init__(self):
-        """The project constructor class"""
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        """The task constructor class"""
+        super().__init(*args, **kwargs)

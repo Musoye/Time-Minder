@@ -20,6 +20,6 @@ class Project(BaseModel, Base):
     users = relationship("User", backref="project")
 
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """The project constructor class"""
-        super().__init__()
+        super.__init__(*args, **kwargs)
