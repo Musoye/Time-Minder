@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" objects that handle all default RestFul API actions for Users"""
-from models.project import Project
+""" objects that handle all default RestFul API actions for Tasks"""
 from models.task import Task
 from models import storage
 from api.views import app_views
@@ -11,7 +10,6 @@ from flask import abort, jsonify, make_response, request
 def get_tasks():
     """
     Retrieves the list of all task objects
-    or a specific project
     """
     all_users = storage.all(Task).values()
     list_users = []
@@ -67,7 +65,7 @@ def post_task():
 
     data = request.get_json()
     if data.get('status') not in ['doing', 'todo', 'done']:
-        abort(400, description='The value os status should be doing, todo and done')
+        abort(400, description='The value of status should be doing, todo and done')
     instance = Task(**data)
     instance.save()
     return make_response(jsonify(instance.to_dict()), 201)

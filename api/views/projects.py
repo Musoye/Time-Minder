@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" objects that handle all default RestFul API actions for Users"""
+""" objects that handle all default RestFul API actions for Projects"""
 from models.project import Project
 from models.task import Task
 from models import storage
@@ -11,7 +11,6 @@ from flask import abort, jsonify, make_response, request
 def get_projects():
     """
     Retrieves the list of all project objects
-    or a specific project
     """
     all_users = storage.all(Project).values()
     list_users = []
@@ -34,7 +33,7 @@ def get_project(project_id):
                  strict_slashes=False)
 def delete_project(project_id):
     """
-    Deletes a user Object
+    Deletes a project Object
     """
 
     user = storage.get(Project, project_id)
@@ -92,8 +91,7 @@ def put_project(project_id):
 @app_views.route('/projects/<project_id>/tasks', methods=['GET'], strict_slashes=False)
 def get_all_projects_task(project_id):
     """
-    Retrieves the list of all tasks objects
-    with a specific project
+    Retrieves the all tasks of a specific project
     """
     all_users = storage.all(Task).values()
     list_users = []
