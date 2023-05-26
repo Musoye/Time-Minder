@@ -10,6 +10,7 @@ mail = Mail()
 
 from message.views.index import *
 from message.views.create import *
+from message.views.expire import *
 
 def configure_mail(app):
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
