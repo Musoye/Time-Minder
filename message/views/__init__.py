@@ -9,6 +9,7 @@ notification = Blueprint('notification', __name__, url_prefix='/notify/')
 mail = Mail()
 
 from message.views.index import *
+from message.views.create import *
 
 def configure_mail(app):
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'

@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-""" Index """
-from models.project import Project
-from models.task import Task
-from models.user import User
-from models import storage
+""" Index: Projet and Task creatio mail"""
 from message.views import notification,mail
 from flask import jsonify, abort, request, current_app
 from flask_mail import Message
@@ -26,14 +22,14 @@ def create_project():
     email = data.get('email')
     expiry = data.get('expiry_date')
     msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email])
-    msg.body = '''Hello Great Time Master,\n You have created a new project with the name {}.
-    The project will expire {}'''.format(name, expiry)
+    msg.body = '''Hello Great Time Master,\n You have created a new project \
+        with the name {}.The project will expire {}'''.format(name, expiry)
     try:
         mail.send(msg)
-        return jsonify({'status': 'sent'}), 201
+        return jsonify({'status': 'sent', 'description': 'Email sent'}), 201
     except:
         pass
-    return jsonify({'status': 'error'}), 200
+    return jsonify({'status': 'error', 'description': 'Email not sent'}), 200
 
 @notification.route('/task', methods=['POST'])
 def create_task():
@@ -54,11 +50,11 @@ def create_task():
     project = data.get('project_name')
     expiry = data.get('expiry_date')
     msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email])
-    msg.body = '''Hello Great Time Master,\n You have created a new task {} under the project {}.
-    The project will expire {}'''.format(name, project, expiry)
+    msg.body = "Hello Great Time Master,\n You have created a new task {}\
+    under the project {}.The project will expire {}".format(name, project, expiry)
     try:
         mail.send(msg)
-        return jsonify({'status': 'sent'}), 201
+        return jsonify({'status': 'sent', 'description': 'Email sent'}), 201
     except:
         pass
-    return jsonify({'status': 'error'}), 200
+    return jsonify({'status': 'error', 'description': 'Email not sent'}), 200
