@@ -25,7 +25,7 @@ def create_project():
     expiry = datetime.strptime(expiry, "%Y-%m-%dT%H:%M:%S.%f")
     date = expiry.strftime('%Y-%m-%d')
     time = expiry.strftime('%H:%M:%S')
-    msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email])
+    msg = Message('Creation of a Project', sender='Time Master oyebamijimustapha44@gmail.com', recipients=[email])
     msg.body = "Hello Great Time Master,\n You have created a new project \
 with the name {}.The project will expire on {} at {}".format(name, date, time)
     try:
@@ -56,7 +56,7 @@ def create_task():
     expiry = datetime.strptime(expiry, "%Y-%m-%dT%H:%M:%S.%f")
     date = expiry.strftime('%Y-%m-%d')
     time = expiry.strftime('%H:%M:%S')
-    msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email])
+    msg = Message('Creation of a Task', sender='Time Master oyebamijimustapha44@gmail.com', recipients=[email])
     msg.body = "Hello Great Time Master,\n You have created a new task {}\
 under the project {}.The project will expire on {} at {}".format(name, project, date, time)
     try:

@@ -23,7 +23,7 @@ def create_accout():
     name = data.get('first_name')
     email = data.get('email')
     l_name = data.get('last_name')
-    msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email], bcc=['oyebamijimustapha44@gmail.com'])
+    msg = Message('Creation of Account', sender="Time Master oyebamijimustapha44@gmail.com", recipients=[email], bcc=['oyebamijimustapha44@gmail.com'])
     msg.body = "Hello {} {},\nYou have take a new step in the mangement of your \
 life. I cant't wait to see you flourish".format(name, l_name)
     try:
@@ -56,10 +56,9 @@ def change_password():
     user.save()
     name = data.get('first_name')
     email = data.get('email')
-    msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email], bcc=['oyebamijimustapha44@gmail.com'])
+    msg = Message('Changing of Password', sender='Time Master oyebamijimustapha44@gmail.com', recipients=[email], bcc=['oyebamijimustapha44@gmail.com'])
     msg.body = "Hello {},\nThis is to inform you that your password has been changed sucessfully \
 if you are not the one contact the admin email mmusoye@gmail.com".format(name)
-    print(msg.body)
     try:
         mail.send(msg)
         return jsonify({'status': 'success', 'user_id': user_id, 'description': 'Email sent'}), 201

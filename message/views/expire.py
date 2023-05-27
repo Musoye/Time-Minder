@@ -29,10 +29,9 @@ def expire_project():
     expiry = datetime.strptime(expiry, "%Y-%m-%dT%H:%M:%S.%f")
     date = expiry.strftime('%Y-%m-%d')
     time = expiry.strftime('%H:%M:%S')
-    msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email])
+    msg = Message('Expiration of a project', sender='Time Master oyebamijimustapha44@gmail.com', recipients=[email])
     msg.body = "Hello {},\nYour project {} will soon expire on {} at {}. \
 It's high time you completed the project".format(name, p_name, date, time)
-    print(msg.body)
     try:
         mail.send(msg)
         return jsonify({'status': 'success', 'description': 'Email sent'}), 201
@@ -64,7 +63,7 @@ def expire_task():
     expiry = datetime.strptime(expiry, "%Y-%m-%dT%H:%M:%S.%f")
     date = expiry.strftime('%Y-%m-%d')
     time = expiry.strftime('%H:%M:%S')
-    msg = Message('Time Master', sender='oyebamijimustapha44@gmail.com', recipients=[email])
+    msg = Message('Expiration of a task', sender='Time Master oyebamijimustapha44@gmail.com', recipients=[email])
     msg.body = "Hello {},\nYour task {} under the project {} will soon expire on {} at {}. \
 It's high time you completed the task so you could complete the project".format(name, task, p_name, date, time)
     try:
