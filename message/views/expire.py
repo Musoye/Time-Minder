@@ -8,7 +8,7 @@ from datetime import datetime
 
 
 
-@notification.route('project/expire', methods=['POST'])
+@notification.route('project/expire', methods=['POST'], strict_slashes=False)
 def expire_project():
     """Mail for project expiration"""
     if not request.get_json():
@@ -39,7 +39,7 @@ It's high time you completed the project".format(name, p_name, date, time)
         pass
     return jsonify({'status': 'error', 'description': 'Email not sent'}), 200
 
-@notification.route('task/expire', methods=['POST'])
+@notification.route('task/expire', methods=['POST'], strict_slashes=False)
 def expire_task():
     """Mail for task expiration"""
     if not request.get_json():

@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 
-@notification.route('/project', methods=['POST'])
+@notification.route('/project', methods=['POST'], strict_slashes=False)
 def create_project():
     """Mail for creation of project"""
     if not request.get_json():
@@ -35,7 +35,7 @@ with the name {}.The project will expire on {} at {}".format(name, date, time)
         pass
     return jsonify({'status': 'error', 'description': 'Email not sent'}), 200
 
-@notification.route('/task', methods=['POST'])
+@notification.route('/task', methods=['POST'], strict_slashes=False)
 def create_task():
     """Mail for creation of task under a project"""
     if not request.get_json():

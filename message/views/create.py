@@ -8,7 +8,7 @@ from flask_mail import Message
 
 
 
-@notification.route('/register', methods=['POST'])
+@notification.route('/register', methods=['POST'], strict_slashes=False)
 def create_accout():
     """Mail for creation of a new account"""
     if not request.get_json():
@@ -33,7 +33,7 @@ life. I cant't wait to see you flourish".format(name, l_name)
         pass
     return jsonify({'status': 'error', 'description': 'Email not sent'}), 200
 
-@notification.route('/password', methods=['POST'])
+@notification.route('/password', methods=['POST'], strict_slashes=False)
 def change_password():
     """Mail for changing of passsword"""
     if not request.get_json():
@@ -66,7 +66,7 @@ if you are not the one contact the admin email mmusoye@gmail.com".format(name)
         pass
     return jsonify({'status': 'error', 'description': 'Email not sent'}), 200
 
-@notification.route('/unsub', methods=['POST'])
+@notification.route('/unsub', methods=['POST'], strict_slashes=False)
 def change_email_subscription():
     """Mail for changing subscription to false"""
     if not request.get_json():
