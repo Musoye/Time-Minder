@@ -29,7 +29,8 @@ def auth_signup():
         new_user['password'] = entry.get('password')
         new_user['email'] = entry.get('email')
         result = req.post('http://127.0.0.1:5001/api/users', json=new_user)
-        if result.status_code == 201:
+        resul = req.post('http://127.0.0.1:5002/notify/register', json=new_user)
+        if result.status_code == 201 or resul.status_code == 201:
             return redirect(url_for('login'))
         else:
             return redirect(url_for('signup'))
