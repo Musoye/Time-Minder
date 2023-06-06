@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """The app for the backend that serve the application"""
-from flask import Flask, request, session, url_for, redirect, render_template
+from flask import Flask, request, session, url_for, redirect, render_template, flash
 from hashlib import md5
 import requests as req
 import json
 
 app = Flask(__name__)
+app.strict_slashes = False
 app.secret_key = "I'llneverbebrokeinmylifeandI'macomingchampion"
 url_1 = 'http://127.0.0.1:5001/api'
 url_2 = 'http://127.0.0.1:5002/notify'
@@ -13,12 +14,12 @@ url_2 = 'http://127.0.0.1:5002/notify'
 @app.route('/auth/signup')
 def signup():
     """The page for the sign up"""
-    return render_template('index.html')
+    return render_template('sign.html')
 
 @app.route('/auth/login')
 def login():
     """The page for the login"""
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/signup', methods=['POST'])
 def auth_signup():
@@ -26,8 +27,8 @@ def auth_signup():
     if request.method == 'POST':
         entry = request.form
         new_user = {}
-        new_user['first_name'] = entry.get('firstname', None)
-        new_user['last_name'] = entry.get('lastname', None)
+        new_user['first_name'] = entry.get('first-name', None)
+        new_user['last_name'] = entry.get('last_name', None)
         new_user['password'] = entry.get('password')
         new_user['email'] = entry.get('email')
         result = req.post('{}/users'.format(url_1), json=new_user)
@@ -36,7 +37,7 @@ def auth_signup():
             return redirect(url_for('login'))
         else:
             return redirect(url_for('signup'))
-    return redirect('index.html', message='An error occured')
+    return redirect(url_for('signup'), message='An error occured')
 
 
 @app.route('/login', methods=['POST'])
@@ -60,7 +61,7 @@ def auth_login():
 @app.route('/profile/change_password', methods=['GET'])
 def change_password_page():
     """page to change the passsword"""
-    return render_template('password.html')
+    return render_template('changepassword.html')
 
 @app.route('/profile/change_password', methods=['POST'])
 def change_password():
@@ -92,8 +93,17 @@ def change_password():
             return redirect(url_for('signup'))
     return redirect(url_for('signup'))
 
-@app.route('/profile/update', method=['POST'])
+@app.route('/profile/update')
+def user_update():
+    """The html of update user"""
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    return render_template('updateuser.html')
+
+
+@app.route('/profile/update', methods=['POST'])
 def update_user():
+    """The handler of the update user"""
     if 'user' in session:
         uid = session.get('user')
         entry = request.form
@@ -110,10 +120,10 @@ def update_user():
 @app.route('/dashboard')
 def dashboard():
     """The dashboard handler"""
-    if 'user' in session:
-        user_id = session['user']
-        return 'Dashboard of Life by Musoye of user {}'.format(user_id)
-    return redirect(url_for('signup'))
+    if 'user' not in session:
+        print(session.get('user'))
+        return redirect(url_for('signup'))
+    return render_template('dashboard.html')
 
 @app.route('/project/create', methods=['POST'])
 def project_creation():
@@ -206,7 +216,7 @@ def task_edition(task_id):
 def sign_out():
     """The sign out handler"""
     session.pop('user', None)
-    return redirect(url_for('signup'))
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
