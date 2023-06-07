@@ -23,23 +23,22 @@
 </head>
 
 <body>
-    {% include 'flash.html' %}
     <div class="row container-fluid">
         <div class="col-md-6 first">
-            <img src="logo.jpg" alt="">
+            <img src="../static/images/logo.jpg" alt="">
 
             <div class="form">
                 <h1 class="form-h">Trying to get in?</h1>
                 <p class="form-p">Simply enter your details and you’re in!</p>
                 <form action="/signup" method="post">
                     <label for="first_name" class="inp">First Name</label><br>
-                    <input type="text" name="first_name" class="inpu" placeholder="Enter your First Name"><br>
+                    <input type="text" name="first_name" class="inpu" placeholder="Enter your First Name" required><br>
                     <label for="last_name" class="inp">Last Name</label><br>
-                    <input type="text" name="last_name" class="inpu" placeholder="Enter your Last name"><br>
+                    <input type="text" name="last_name" class="inpu" placeholder="Enter your Last name" required><br>
                     <label for="email" class="inp">Email</label><br>
-                    <input type="email" name="email" class="inpu" placeholder="Enter your Email"><br>
+                    <input type="email" name="email" class="inpu" placeholder="Enter your Email" required><br>
                     <label for="password" class="inp">Password</label><br>
-                    <input type="password" name="password" class="inpu" placeholder="Enter your Password"><br>
+                    <input type="password" name="password" class="inpu" placeholder="Enter your Password" required><br>
                     <button class="form-c">Sign Up</button>
                 </form>
                 <p class="form-a">Already have an account? <a class="lin" href="/auth/login">Login</a></p>

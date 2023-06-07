@@ -17,29 +17,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Sora:wght@200;400;600&display=swap"
         rel="stylesheet">
 
-        <link rel="stylesheet" href="../static/css/index.css" />
-        <link rel="stylesheet" href="../static/css/login.css">
-    <title>Login - Time Master</title>
+    <link rel="stylesheet" href="../static/css/index.css" />
+    <link rel="stylesheet" href="../static/css/login.css">
+    <title>Edit Project - Time Master</title>
 </head>
 
 <body>
     <div class="row container-fluid">
         <div class="col-md-6 first">
-            <img src="logo.jpg" alt="">
+            <img src="../static/images/logo.jpg" alt="">
 
             <div class="form">
-                <h1 class="form-h">Welcome back!</h1>
-                <p class="form-p">Simply enter your details and you’re in!</p>
-                <form action="/login" method="POST">
-                    <label for="username" class="inp">Email</label><br>
-                    <input type="email" name="username" class="inpu" placeholder="Enter your Email" required><br>
-                    <label for="password" class="inp">Password</label><br>
-                    <input type="password" name="password" class="inpu" placeholder="Enter your Password" required><br>
-                    <button class="form-c">Log in</button>
-                </form>
-                <p class="form-a">Already have an account? <a class="lin" href="/auth/signup">Sign Up</a></p>
-                <p class="form-a">Forgot your password? <a class="lin" href="/profile/change_password">Forgotten Password</a></p>
+                <h1 class="form-h">Edit Project Details</h1>
+                <p class="form-p">Refine Your Project's Information and Make Updates</p>
+                <form action="">
+                    <label for="name" class="inp">Project Name</label><br>
+                    <input type="text" name="name" class="inpu" placeholder="Enter your project name"><br>
+                    <label for="desciption" class="inp">Description</label><br>
+                    <textarea name="description" id="" class="inpu" cols="30" rows="4" placeholder="Enter the description"></textarea><br>
+                    <label for="expiry">Expiry date</label><br>
+                    <input type="date" name="expiry" id="" class="inpu">
+                    <select name="status" class="inpu" id="">
+                        <option value="todo">Todo</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="done">Done</option>
 
+                    </select>
+                    <button class="form-c">Save Changes</button>
+                </form>
                 <p class="fot">&copy;minder 2023</p>
                 
             </div>

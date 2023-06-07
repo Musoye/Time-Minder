@@ -23,9 +23,6 @@
 </head>
 
 <body>
-    <div>
-    {% include 'flash.html' %}
-</div>
     <div class="row container-fluid">
         <div class="col-md-6 first">
             <img src="logo.jpg" alt="">
@@ -34,10 +31,10 @@
                 <h3 class="form-h">Unleash Your User's Potential: Customize and Empower</h3>
                 <p class="form-p">Simply enter your details to unleash the potential!</p>
                 <form action="/profile/update" method="post">
-                    <label for="firstname" class="inp">First Name</label><br>
-                    <input type="text" name="firstname" class="inpu" placeholder="Enter your First Name"><br>
-                    <label for="lastname" class="inp">Last Name</label><br>
-                    <input type="text" name="lastname" class="inpu" placeholder="Enter your Last name"><br>
+                    <label for="first_name" class="inp">First Name</label><br>
+                    <input type="text" name="first_name" class="inpu" placeholder="Enter your First Name"><br>
+                    <label for="last_name" class="inp">Last Name</label><br>
+                    <input type="text" name="last_name" class="inpu" placeholder="Enter your Last name"><br>
                     <button class="form-b">Apply Modifications</button>
                 </form>
 

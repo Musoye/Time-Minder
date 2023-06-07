@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """The app for the backend that serve the application"""
-from flask import Flask, request, session, url_for, redirect, render_template, flash
+from flask import Flask, request, session, url_for, redirect, render_template
 from hashlib import md5
 import requests as req
 import json
@@ -10,6 +10,16 @@ app.strict_slashes = False
 app.secret_key = "I'llneverbebrokeinmylifeandI'macomingchampion"
 url_1 = 'http://127.0.0.1:5001/api'
 url_2 = 'http://127.0.0.1:5002/notify'
+
+def change_dic(dic):
+    """A function that remove dic key null"""
+    lis = []
+    for key in dic:
+        if dic[key] is None:
+            lis.append(key)
+    for i, v in lis.enumerate():
+        del dic[v]
+    return dic
 
 @app.route('/auth/signup')
 def signup():
@@ -27,7 +37,7 @@ def auth_signup():
     if request.method == 'POST':
         entry = request.form
         new_user = {}
-        new_user['first_name'] = entry.get('first-name', None)
+        new_user['first_name'] = entry.get('first_name', None)
         new_user['last_name'] = entry.get('last_name', None)
         new_user['password'] = entry.get('password')
         new_user['email'] = entry.get('email')
@@ -49,9 +59,11 @@ def auth_login():
         password = entry['password']
         password = md5(password.encode()).hexdigest().lower()
         result = req.get('{}/users'.format(url_1)).json()
+        print(result)
         for user in result:
             if user.get('email') == username:
                 if user.get('password') == password:
+                    print(user)
                     session['user'] = user.get('id')
                     session['email'] = user.get('email')
                     session['first'] = user.get('first_name')
@@ -76,7 +88,7 @@ def change_password():
         for user in result:
             if user.get('email') == email:
                 user_id = user.get('id')
-                firstname = user.get('firstname')
+                firstname = user.get('first_name')
                 break
         if user_id is None:
                 return 'Your email does not exist'
@@ -88,7 +100,7 @@ def change_password():
         }
         resul = req.post('{}/password'.format(url_2), json=data)
         if resul.status_code in [200, 201]:
-            return 'You password has been updated successfully'
+            return 'Your password has been updated successfully'
         else:
             return redirect(url_for('signup'))
     return redirect(url_for('signup'))
@@ -110,6 +122,7 @@ def update_user():
         new_values = {}
         new_values['first_name'] = entry['first_name']
         new_values['last_name'] = entry['last_name']
+        new_values = change_dic(new_values)
         result = req.put('{}/users/{}'.format(url_1, uid), json=new_values)
         if result.status_code == 200:
             return redirect(url_for('dashboard'))
@@ -120,10 +133,21 @@ def update_user():
 @app.route('/dashboard')
 def dashboard():
     """The dashboard handler"""
-    if 'user' not in session:
+    if session.get('user') is None:
         print(session.get('user'))
         return redirect(url_for('signup'))
-    return render_template('dashboard.html')
+    user_id = session.get('user')
+    request = req.get('{}/projects'.format(url_1)).json()
+    user_project = []
+    for pro in request:
+        if pro.get('user_id') == user_id:
+            user_project.append(pro)
+    return render_template('project.html', project=user_project)
+
+@app.route('/project/create')
+def project_creation_page():
+    """The project creation page"""
+    return render_template('createproj.html')
 
 @app.route('/project/create', methods=['POST'])
 def project_creation():
