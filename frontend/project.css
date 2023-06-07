@@ -1,0 +1,38 @@
+* {
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #779FA1;
+    color: white;
+    font-family: 'Sora', sans-serif;
+}
+.p-head {
+    font-weight: bold;
+}
+.table {
+    width: 70%;
+    margin: auto;
+}
+th {
+    width: 20%;
+}
+th, td {
+    padding: 13px;
+}
+td a {
+    color: #6B3FA0;
+}
+.b-left {
+    position: relative;
+    top: 100%;
+    left: 80%;
+}
+div.b-left a {
+    background-color: #8c60c1;
+}
+.futa {
+    position: absolute;
+    bottom: 0;
+}
