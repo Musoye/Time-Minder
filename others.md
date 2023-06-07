@@ -4,7 +4,7 @@
 
 ## Google Sheet
 
-[sheet]()
+[sheet](https://docs.google.com/presentation/d/10Oaslz4HhyldBIOYdrNu1WlsJcfMa64m2iN0M71w2iU/edit?usp=sharing)
 
 ## MVP
 
