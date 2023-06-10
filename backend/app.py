@@ -170,6 +170,11 @@ def project_creation():
                 return redirect(url_for('login'))
     return redirect(url_for('login'))
 
+@app.route('/<project_id>/edit')
+def project_edition_page(project_id):
+    """The projecteditting page"""
+    return render_template('editproj.html', p=project_id)
+
 @app.route('/<project_id>/edit', methods=['POST'])
 def project_edition(project_id):
     """Edition of a project"""

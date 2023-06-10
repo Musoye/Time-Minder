@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
-CORS(app, resources={r"/api/*": {"origins": ["http://127.0.0.1", "http://0.0.0.0"]}})
+CORS(app, resources={r"/api/*": {"origins": ["http://127.0.0.1", "http://127.0.0.1:5000", "http://0.0.0.0"]}})
 
 @app.teardown_appcontext
 def close_db(error):
