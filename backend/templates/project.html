@@ -72,7 +72,7 @@
                 {% for pro in project %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td><a href="">{{ pro.name }}</a></td>
+                    <td><a href="/project/{{ pro.id }}">{{ pro.name }}</a></td>
                     <td>{{ pro.created_at }}</td>
                     <td>{{ pro.expiry_date }}</td>
                     <td>Ongoing</td>

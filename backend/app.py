@@ -2,6 +2,7 @@
 """The app for the backend that serve the application"""
 from flask import Flask, request, session, url_for, redirect, render_template
 from hashlib import md5
+from datetime import datetime
 import requests as req
 import json
 
@@ -17,7 +18,7 @@ def change_dic(dic):
     for key in dic:
         if dic[key] is None:
             lis.append(key)
-    for i, v in lis.enumerate():
+    for i, v in enumerate(lis):
         del dic[v]
     return dic
 
@@ -63,7 +64,6 @@ def auth_login():
         for user in result:
             if user.get('email') == username:
                 if user.get('password') == password:
-                    print(user)
                     session['user'] = user.get('id')
                     session['email'] = user.get('email')
                     session['first'] = user.get('first_name')
@@ -173,7 +173,7 @@ def project_creation():
 @app.route('/<project_id>/edit')
 def project_edition_page(project_id):
     """The projecteditting page"""
-    return render_template('editproj.html', p=project_id)
+    return render_template('editproj.html', pro_id=project_id)
 
 @app.route('/<project_id>/edit', methods=['POST'])
 def project_edition(project_id):
@@ -184,16 +184,25 @@ def project_edition(project_id):
         if request.method == 'POST':
             entry = request.form
             new_pro = {}
-            new_pro['name'] = entry.get('name')
-            new_pro['description'] = entry.get('description')
-            new_pro['expiry_date'] = entry.get('expiry')
+            new_pro['name'] = entry.get('name', None)
+            new_pro['description'] = entry.get('description', None)
+            new_pro['expiry_date'] = entry.get('expiry', None)
             new_pro['user_id'] = uid
+            new_pro = change_dic(new_pro)
             result = req.put('{}/projects/{}'.format(url_1, prd), json=new_pro)
-            if result.status_code == 201:
+            if result.status_code == 200:
                 return redirect(url_for('dashboard'))
             else:
                 return redirect(url_for('login'))
     return redirect(url_for('login'))
+
+@app.route('/project/<project_id>')
+def each_project(project_id):
+    """Each project details"""
+    result = req.get('{}/projects/{}'.format(url_1, project_id)).json()
+    result["created_at"] = datetime.strptime(result.get("created_at"), "%Y-%m-%dT%H:%M:%S.%f")
+    result["expiry_date"] = datetime.strptime(result.get("expiry_date"), "%Y-%m-%dT%H:%M:%S.%f")
+    return render_template('eachproj.html', pro=result)
 
 @app.route('/<project_id>/task/create', methods=['POST'])
 def task_creation(project_id):
@@ -235,6 +244,7 @@ def task_edition(task_id):
             new_pro['user_id'] = uid
             new_pro['status'] = entry.get('status')
             result = req.put('{}/tasks/{}'.format(url_1, tad), json=new_pro)
+            print(result.status_code)
             if result.status_code == 201:
                 return redirect(url_for('dashboard'))
             else:

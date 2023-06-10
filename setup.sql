@@ -44,7 +44,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES ('d7d05a45-edf8-4c2e-90f1-502c205bca77','the odion project',NULL,0,'2023-05-26 14:55:39',0,'abd23c36-ba06-44fe-bd38-44d921c6cdb6','2023-05-23 13:57:32','2023-05-23 15:01:23');
+INSERT INTO `projects` VALUES ('d97fadf2-7879-433e-b1af-4ff1f672ef36','The Markonikov Theory','The Theory of Markonikov in organic chemistry',0,'2023-05-29 15:55:04',0,'1f912038-cc79-4171-9b47-5891dd41d2d1','2023-05-26 15:55:20','2023-05-26 15:55:20'),('d97fadf2-7879-433e-b1af-4ff1f672ef36','The Markonikov Theory','The Theory of Markonikov in organic chemistry',0,'2023-05-27 06:57:24',0,'4288cfb3-1f4c-498c-b223-250cbf171ee2','2023-05-24 06:58:08','2023-05-24 06:58:08'),('d97fadf2-7879-433e-b1af-4ff1f672ef36','The Markonikov Theory','The Theory of Markonikov in organic chemistry',0,'2023-05-27 06:57:24',0,'4b7cfe63-cad3-4448-b0bf-335ce942f474','2023-05-24 06:58:06','2023-05-24 06:58:06'),('d97fadf2-7879-433e-b1af-4ff1f672ef36','The Markonikov Theory','The Theory of Markonikov in organic chemistry',0,'2023-05-27 06:35:58',0,'63d67f6c-5780-477c-ba01-d4e6171fb781','2023-05-24 06:38:11','2023-05-24 06:38:11'),('eac5e5bf-0005-4da1-9b2a-bea787dc29eb','Mustapha The master','Mustapha the Master is the story of a young African boy who is going on the path of being the greatest',0,'2023-06-10 22:39:30',0,'7101372d-4bf1-4b8b-8727-d7e23cac5ba7','2023-06-07 23:16:18','2023-06-07 23:16:18'),('d7d05a45-edf8-4c2e-90f1-502c205bca77','The design','The Product design',0,'2023-05-27 06:35:58',0,'9957604f-b048-4319-a6c7-c9e00623a393','2023-05-24 06:36:05','2023-05-24 06:36:05'),('d7d05a45-edf8-4c2e-90f1-502c205bca77','the odion project',NULL,0,'2023-05-26 14:55:39',0,'abd23c36-ba06-44fe-bd38-44d921c6cdb6','2023-05-23 13:57:32','2023-05-23 15:01:23'),('d97fadf2-7879-433e-b1af-4ff1f672ef36','The Markonikov Theory','The Theory of Markonikov in organic chemistry',0,'2023-05-27 06:57:24',0,'ba89be7d-4643-4bd0-9005-8fd743bbece1','2023-05-24 06:58:06','2023-05-24 06:58:06');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,7 +81,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES ('abd23c36-ba06-44fe-bd38-44d921c6cdb6','d7d05a45-edf8-4c2e-90f1-502c205bca77','The interface','doing',NULL,0,'2023-05-26 15:03:18',0,'21cc7e32-a02d-49ec-83c7-0d4899490f8e','2023-05-23 14:03:33','2023-05-23 15:05:01');
+INSERT INTO `tasks` VALUES ('abd23c36-ba06-44fe-bd38-44d921c6cdb6','d7d05a45-edf8-4c2e-90f1-502c205bca77','The interface','doing',NULL,0,'2023-05-26 15:03:18',0,'21cc7e32-a02d-49ec-83c7-0d4899490f8e','2023-05-23 14:03:33','2023-05-23 15:05:01'),('63d67f6c-5780-477c-ba01-d4e6171fb781','d97fadf2-7879-433e-b1af-4ff1f672ef36','Introduction to Markonikov Theory','doing','Introduction into The Theory of Markonikov in organic chemistry',0,'2023-05-27 06:43:39',0,'5e91a431-239b-4d5b-bf2a-b0ac0dc7cfd2','2023-05-24 06:43:45','2023-05-24 06:43:45');
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('mus@mus.com','5f62509bdf2ec0331ee55427f4b80f7d',NULL,NULL,1,'d7d05a45-edf8-4c2e-90f1-502c205bca77','2023-05-23 13:55:51','2023-05-23 14:56:40');
+INSERT INTO `users` VALUES ('mus@mus.com','af3e333de47c9f19e2024a5f5c314812',NULL,NULL,1,'d7d05a45-edf8-4c2e-90f1-502c205bca77','2023-05-23 13:55:51','2023-05-26 15:28:11'),('mymail@mail.com','3316862d315faa3c1e8dde2d379ee8c9','firste','last',1,'d97fadf2-7879-433e-b1af-4ff1f672ef36','2023-05-24 06:28:48','2023-06-07 22:52:55'),('mmusoye@gmail.com','96721002e79e783ecf22eac6543c3bfb',NULL,'Oyebamiji',1,'eac5e5bf-0005-4da1-9b2a-bea787dc29eb','2023-06-07 22:59:37','2023-06-07 22:59:37');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -124,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-24  5:08:03
+-- Dump completed on 2023-06-10 14:10:13

@@ -10,7 +10,6 @@ window.onload = function() {
             method: 'DELETE',
             success: function() {
                 location.reload();
-                alert('The project has been successfully deleted.');
             },
             error: function() {
                 alert("The project cannot be deleted.");

@@ -64,7 +64,7 @@ def post_task():
         abort(400, description="Missing status")
 
     data = request.get_json()
-    if data.get('status') not in ['doing', 'todo', 'done']:
+    if data.get('status') not in ['ongoing', 'todo', 'done']:
         abort(400, description='The value of status should be doing, todo and done')
     instance = Task(**data)
     instance.save()

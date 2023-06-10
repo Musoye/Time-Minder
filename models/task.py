@@ -15,7 +15,7 @@ class Task(BaseModel, Base):
     user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
     name = Column(String(128), nullable=False)
     status = Column(String(16), nullable=False)
-    description = Column(String(128), nullable=True)
+    description = Column(String(1024), nullable=True)
     sent = Column(Boolean, default=False)
     expiry_date = Column(DateTime, default=expired)
     is_priority = Column(Boolean, default=False)

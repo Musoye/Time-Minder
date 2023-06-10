@@ -26,15 +26,14 @@
     <div class="row container-fluid">
         <div class="col-md-6 first"><img src="../static/images/logo.jpg" alt="">
         <div class="form">
-            <h3>The Odion Project</h3>
+            <h3>{{ pro.name }}</h3>
 
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore, maiores deleniti corporis facere asperiores sapiente doloribus accusantium necessitatibus ad doloremque, impedit eius sunt eveniet itaque, quae ipsa quaerat ea libero.</p>
+            <p>{{ pro.description }}</p>
             <p>Status: <b>Ongoing</b></p>
-            <p>Created date: <b>2023-01-04</b></p>
-            <p>Expiry date: <b>2023-01-04</b></p>
-            <button class="btn btn-primary">Edit</button>
+            <p>Created date: <b>{{ pro.created_at }}</b></p>
+            <p>Expiry date: <b>{{ pro.expiry_date }}</b></p>
+            <a href="/{{ pro.id }}/edit" class="btn btn-primary">Edit</a>
             <a href="" class="btn btn-primary">Tasks</a>
-            <a href="" class="btn btn-primary">Delete</a>
         </div></div>
 
         <div class="col-md-6">

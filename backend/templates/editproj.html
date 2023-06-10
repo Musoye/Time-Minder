@@ -28,9 +28,10 @@
             <img src="../static/images/logo.jpg" alt="">
 
             <div class="form">
+                <p style="color:white;background-color: #00000022;">Enter only the place you wish to edit</p>
                 <h1 class="form-h">Edit Project Details</h1>
                 <p class="form-p">Refine Your Project's Information and Make Updates</p>
-                <form action="">
+                <form action="/{{ pro_id }}/edit" method="POST">
                     <label for="name" class="inp">Project Name</label><br>
                     <input type="text" name="name" class="inpu" placeholder="Enter your project name"><br>
                     <label for="desciption" class="inp">Description</label><br>
