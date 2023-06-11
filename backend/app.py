@@ -160,14 +160,15 @@ def project_creation():
             new_pro['name'] = entry.get('name')
             new_pro['description'] = entry.get('description')
             new_pro['expiry_date'] = entry.get('expiry')
+            expiry_str = entry.get('expiry')
+            expiry_date = datetime.strptime(expiry_str, '%Y-%m-%d').date() 
+            expiry = datetime.combine(expiry_date, datetime.min.time())
+            new_pro['expiry'] = expiry
             new_pro['email'] = session.get('email')
             new_pro['user_id'] = uid
             result = req.post('{}/projects'.format(url_1), json=new_pro)
             resul = req.post('{}/project'.format(url_2), json=new_pro)
-            if result.status_code == 201:
-                return redirect(url_for('dashboard'))
-            else:
-                return redirect(url_for('login'))
+            return redirect(url_for('dashboard'))
     return redirect(url_for('login'))
 
 @app.route('/<project_id>/edit')
@@ -204,6 +205,11 @@ def each_project(project_id):
     result["expiry_date"] = datetime.strptime(result.get("expiry_date"), "%Y-%m-%dT%H:%M:%S.%f")
     return render_template('eachproj.html', pro=result)
 
+@app.route('/<project_id>/task/create')
+def task_creation_page(project_id):
+    """The page handler"""
+    return render_template('createtask.html', pro=project_id)
+
 @app.route('/<project_id>/task/create', methods=['POST'])
 def task_creation(project_id):
     """Creation of a new task"""
@@ -216,6 +222,10 @@ def task_creation(project_id):
             new_pro['name'] = entry.get('name')
             new_pro['description'] = entry.get('description')
             new_pro['expiry_date'] = entry.get('expiry')
+            expiry_str = entry.get('expiry')
+            expiry_date = datetime.strptime(expiry_str, '%Y-%m-%d').date() 
+            expiry = datetime.combine(expiry_date, datetime.min.time())
+            new_pro['expiry'] = expiry
             new_pro['email'] = session.get('email')
             new_pro['user_id'] = uid
             new_pro['status'] = entry.get('status')
@@ -223,11 +233,19 @@ def task_creation(project_id):
             new_pro['project_id'] = prd
             result = req.post('{}/tasks'.format(url_1), json=new_pro)
             resul = req.post('{}/task'.format(url_2), json=new_pro)
-            if result.status_code == 201:
-                return redirect(url_for('dashboard'))
-            else:
-                return redirect(url_for('login'))
+            return redirect(url_for('dashboard'))
     return redirect(url_for('login'))
+
+@app.route('/<project_id>/task')
+def tasks_pro(project_id):
+    """The task handler"""
+    if session.get('user') is None:
+        print(session.get('user'))
+        return redirect(url_for('signup'))
+    prd = project_id
+    #user_id = session.get('user')
+    request = req.get('{}/projects/{}/tasks'.format(url_1, prd)).json()
+    return render_template('task.html', project=request, prd=prd)
 
 @app.route('/project/<task_id>/edit', methods=['POST'])
 def task_edition(task_id):

@@ -52,7 +52,7 @@ def create_task():
     name = data.get('name')
     email = data.get('email')
     project = data.get('project_name')
-    expiry = data.get('expiry_date')
+    expiry = data.get('expiry')
     expiry = datetime.strptime(expiry, "%Y-%m-%dT%H:%M:%S.%f")
     date = expiry.strftime('%Y-%m-%d')
     time = expiry.strftime('%H:%M:%S')

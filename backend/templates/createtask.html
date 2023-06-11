@@ -17,27 +17,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Sora:wght@200;400;600&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="../static/css/index.css" />
-    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="/../static/css/index.css" >
+    <link rel="stylesheet" href="/../static/css/login.css" >
     <title>Create Task - Time Master</title>
 </head>
 
 <body>
     <div class="row container-fluid">
         <div class="col-md-6 first">
-            <img src="../static/images/logo.jpg" alt="">
+            <img src="/../static/images/logo.jpg" alt="">
 
             <div class="form">
                 <h1 class="form-h">Manage Your Tasks</h1>
                 <p class="form-p">Stay Organized and Stay on Top of Your Project's Progress</p>
-                <form action="">
+                <form action="/{{ pro }}/task/create" method="post">
                     <label for="name" class="inp">Task Name</label><br>
-                    <input type="text" name="name" class="inpu" placeholder="Enter your project name"><br>
+                    <input type="text" name="name" class="inpu" placeholder="Enter your Task name" required><br>
                     <label for="desciption" class="inp">Description</label><br>
-                    <textarea name="description" id="" class="inpu" cols="30" rows="4" placeholder="Enter the description"></textarea><br>
+                    <textarea name="description" id="" class="inpu" cols="30" rows="4" placeholder="Enter the description" required></textarea><br>
                     <label for="expiry">Expiry date</label><br>
-                    <input type="date" name="expiry" id="" class="inpu">
-                    <select name="status" class="inpu" id="">
+                    <input type="date" name="expiry" id="" class="inpu" required>
+                    <select name="status" class="inpu" id="" required>
                         <option value="todo">Todo</option>
                         <option value="ongoing">Ongoing</option>
                         <option value="done">Done</option>

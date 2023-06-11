@@ -30,6 +30,7 @@
     <h3 class="text-center p-head">TASKS OF ODION</h3>
     </div>
     <div class="table">
+        {% if project %}
         <table>
             <thead>
                 <th>S/N</th>
@@ -41,44 +42,24 @@
                 <th></th>
             </thead>
             <tbody>
+                {% for pro in project %}
                 <tr>
-                    <td>1</td>
-                    <td><a href="">The Odion Project</a></td>
-                    <td>2023-01-23</td>
-                    <td>2023-01-24</td>
-                    <td>Ongoing</td>
+                    <td>{{ loop.index }}</td>
+                    <td><a href="">{{ pro.name }}</a></td>
+                    <td>{{ pro.created_at}}</td>
+                    <td>{{ pro.expiry_date }}</td>
+                    <td>{{ pro.status }}</td>
                     <td><a href="" class="btn btn-primary btn-md">Edit</a></td>
                     <td><a href="" class="btn btn-primary btn-md">Delete</a></td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td><a href="">The Odion Project</a></td>
-                    <td>2023-01-23</td>
-                    <td>2023-01-24</td>
-                    <td>Ongoing</td>
-                    <td><a href="" class="btn btn-primary btn-md">Edit</a></td>
-                    <td><a href="" class="btn btn-primary btn-md">Delete</a></td>
-                </tr><tr>
-                    <td>1</td>
-                    <td><a href="">The Odion Project</a></td>
-                    <td>2023-01-23</td>
-                    <td>2023-01-24</td>
-                    <td>Ongoing</td>
-                    <td><a href="" class="btn btn-primary btn-md">Edit</a></td>
-                    <td><a href="" class="btn btn-primary btn-md">Delete</a></td>
-                </tr><tr>
-                    <td>1</td>
-                    <td><a href="">The Odion Project</a></td>
-                    <td>2023-01-23</td>
-                    <td>2023-01-24</td>
-                    <td>Ongoing</td>
-                    <td><a href="" class="btn btn-primary btn-md">Edit</a></td>
-                    <td><a href="" class="btn btn-primary btn-md">Delete</a></td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
+        {% else %}
+         <div>You have no task created recently</div>
+        {% endif %}
     </div>
-    <div class="b-left"><a href="" class="btn btn-primary btn-md">New Task</a></div>
+    <div class="b-left"><a href="/{{ prd }}/task/create" class="btn btn-primary btn-md">New Task</a></div>
 
     <div class="futa">@minde-2023</div>
 
