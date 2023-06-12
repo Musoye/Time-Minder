@@ -1,16 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary Meta Tags -->
+  <title>Time Minder &mdash; Task Management App</title>
+  <meta name="title" content="Time Minder &mdash; Task Management App" />
+  <meta name="description"
+    content="Time Minder is a task management app that helps you organize your tasks and get things done." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Time Minder &mdash; Task Management App" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="https://i.ibb.co/nmTFgHK/minder-og-image.png" />
+  <meta property="og:description"
+    content="Time Minder is a task management app that helps you organize your tasks and get things done." />
+  <meta property="og:site_name" content="Minder" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="en_GB" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@minder" />
+  <meta name="twitter:creator" content="@minder" />
+  <meta name="twitter:title" content="Time Minder &mdash; Task Management App" />
+  <meta name="twitter:description"
+    content="Time Minder is a task management app that helps you organize your tasks and get things done." />
+  <meta name="twitter:image" content="https://i.ibb.co/nmTFgHK/minder-og-image.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/css/landing.css" />
+
+  <!-- JS -->
+  <script>
+    const navbar = document.querySelector('.nav');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > navbar.offsetHeight) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/../static/images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/../static/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/../static/images/favicon-16x16.png" />
+  <link rel="manifest" href="/../static/site.webmanifest" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
 </head>
+
 <body>
-    <form action="/login" method="post">
-        <input type="text" name="username" placeholder="Enter your email">
-        <input type="password" name="password" placeholder="Enter your password">
-        <button type="submit">submit</button>
-    </form>
+  <header>
+    <!-- Start: Navbar -->
+    <nav class="nav">
+      <div class="container">
+        <div class="logo">
+          <a href="/">
+            <img src="/../static/images//logo.svg" alt="Minder Logo" />
+          </a>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="https://musoye.github.io" target="_blank">Contact</a></li>
+            <li><a href="https://musoye.github.io" target="_blank">Services</a></li>
+          </ul>
+        </div>
+        <div class="nav-cta">
+          <a href="/auth/signup" class="btn violet-btn">Sign Up</a>
+          <a href="/auth/login" class="btn green-btn">Login</a>
+        </div>
+      </div>
+    </nav>
+    <!-- End: Navbar -->
+
+    <!-- Start: Hero -->
+    <div class="hero">
+      <div class="container">
+        <div class="hero-text">
+          <div class="subheading">Easy.Task.Management</div>
+          <h1 class="heading">Streamline Your Project Workflows</h1>
+          <p class="supporting-text">
+            Empower your team, Achieve efficiency, and meet deadlines
+          </p>
+          <div class="hero-cta">
+            <a href="#" class="btn green-btn">
+              <img src="/../static/images/playcircle.svg" alt="" />
+              <span>Demo</span>
+            </a>
+            <a href="/auth/signup" class="btn violet-btn">Sign Up</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="/../static/images/hero-image.png" alt="Time Minder Dashboard Preview" />
+        </div>
+      </div>
+    </div>
+    <!-- End: Hero -->
+  </header>
+  <main>
+    <!-- Begin: Newsletter -->
+    <section class="newsletter">
+      <h3 class="header">We'll send you a nice letter once per week</h3>
+      <p class="description">
+        No spam. Just the latest releases and tips, interesting articles, and
+        exclusive interviews with great people.
+      </p>
+
+      <form class="newsletter-cta" action="#" method="post">
+        <div class="form-control">
+          <input type="email" name="email" id="email" placeholder="Enter your email" title="Your email" />
+          <button type="submit" title="Subscribe" class="btn violet-btn">
+            Subscribe
+          </button>
+        </div>
+        <p class="form-privacy">
+          We care about your data in our <a href="#">privacy policy</a>.
+        </p>
+      </form>
+    </section>
+    <!-- End: Newsletter -->
+  </main>
+  <footer></footer>
+  <script>
+
+  </script>
 </body>
+
 </html>

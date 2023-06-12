@@ -21,6 +21,12 @@ def change_dic(dic):
     return (new_dic)
 
 
+@app.route('/')
+def home():
+    """The landing page"""
+    return render_template('index.html')
+
+
 @app.route('/auth/signup')
 def signup():
     """The page for the sign up"""
