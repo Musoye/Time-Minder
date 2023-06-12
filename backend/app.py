@@ -164,10 +164,10 @@ def project_creation():
             new_pro['name'] = entry.get('name')
             new_pro['description'] = entry.get('description')
             new_pro['expiry_date'] = entry.get('expiry')
-            expiry_str = entry.get('expiry')
-            expiry_date = datetime.strptime(expiry_str, '%Y-%m-%d').date() 
-            expiry = datetime.combine(expiry_date, datetime.min.time())
-            new_pro['expiry'] = expiry
+            # expiry_str = entry.get('expiry')
+            # expiry_date = datetime.strptime(expiry_str, '%Y-%m-%d').date() 
+            # expiry = datetime.combine(expiry_date, datetime.min.time())
+            new_pro['expiry'] = entry.get('expiry')
             new_pro['email'] = session.get('email')
             new_pro['user_id'] = uid
             result = req.post('{}/projects'.format(url_1), json=new_pro)
@@ -226,10 +226,14 @@ def task_creation(project_id):
             new_pro['name'] = entry.get('name')
             new_pro['description'] = entry.get('description')
             new_pro['expiry_date'] = entry.get('expiry')
-            expiry_str = entry.get('expiry')
-            expiry_date = datetime.strptime(expiry_str, '%Y-%m-%d').date() 
-            expiry = datetime.combine(expiry_date, datetime.min.time())
-            new_pro['expiry'] = expiry
+            # expiry_str = entry.get('expiry')
+            # expiry_date = datetime.strptime(expiry_str, '%Y-%m-%d').date() 
+            # expiry = datetime.combine(expiry_date, datetime.min.time())
+            new_pro['expiry'] = entry.get('expiry')
+            # expiry_str = entry.get('expiry')
+            # expiry_date = datetime.strptime(expiry_str, '%Y-%m-%d').date() 
+            # expiry = datetime.combine(expiry_date, datetime.min.time())
+            # new_pro['expiry'] = expiry
             new_pro['email'] = session.get('email')
             new_pro['user_id'] = uid
             new_pro['status'] = entry.get('status')
@@ -267,17 +271,17 @@ def task_edition(task_id):
             new_pro = {}
             new_pro['name'] = entry.get('name', None)
             new_pro['description'] = entry.get('description', None)
-            new_pro['expiry_date'] = entry.get('expiry', None)
-            if new_pro.get('expiry_date') is not None and len(new_pro.get('expiry_date')) > 0:
-                submitted_date = datetime.strptime(new_pro.get('expiry_date'), '%Y-%m-%d').date()
-                default_time = datetime.min.time()
-                new_pro['expiry_date'] = str(datetime.combine(submitted_date, default_time))
+            #new_pro['expiry_date'] = entry.get('expiry', None)
+            #new_pro['expiry'] = entry.get('expiry', None)
+            # if new_pro.get('expiry_date') is not None and len(new_pro.get('expiry_date')) > 0:
+            #     submitted_date = datetime.strptime(new_pro.get('expiry_date'), '%Y-%m-%d').date()
+            #     default_time = datetime.min.time()
+            #     new_pro['expiry_date'] = str(datetime.combine(submitted_date, default_time))
             new_pro['status'] = entry.get('status', None)
             new_pr =  change_dic(new_pro)
             result = req.put('{}/tasks/{}'.format(url_1, tad), json=new_pr)
-            print(result.status_code)
             if result.status_code == 200:
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('each_task', task_id=tad))
             else:
                 return redirect(url_for('login'))
     return redirect(url_for('login'))
