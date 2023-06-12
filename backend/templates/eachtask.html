@@ -25,16 +25,17 @@
 <body>
     <div class="row container-fluid">
         <div class="col-md-6 first"><img src="../static/images/logo.jpg" alt="">
-        <div class="form">
-            <h3>The Task of Odion Project</h3>
+            <div class="form">
+                <h3>The Task of {{ pro.id }}</h3>
 
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore, maiores deleniti corporis facere asperiores sapiente doloribus accusantium necessitatibus ad doloremque, impedit eius sunt eveniet itaque, quae ipsa quaerat ea libero.</p>
-            <p>Status: <b>Ongoing</b></p>
-            <p>Created date: <b>2023-01-04</b></p>
-            <p>Expiry date: <b>2023-01-04</b></p>
-            <a class="btn btn-primary">Edit</a>
-            <a href="" class="btn btn-primary">Delete</a>
-        </div></div>
+                <h4>{{ pro.name }}</h4>
+                <p>{{ pro.description}}</p>
+                <p>Status: <b>{{ pro.status }}</b></p>
+                <p>Created date: <b>{{ pro.created_at }}</b></p>
+                <p>Expiry date: <b>{{ pro.expiry_date }}</b></p>
+                <a href="/project/{{ pro.id }}/edit" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
 
         <div class="col-md-6">
             <div class="second"></div>

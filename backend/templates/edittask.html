@@ -17,20 +17,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Sora:wght@200;400;600&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="../static/css/index.css" />
-    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="/../static/css/index.css" />
+    <link rel="stylesheet" href="/../static/css/login.css">
     <title>Edit Task - Time Master</title>
 </head>
 
 <body>
     <div class="row container-fluid">
         <div class="col-md-6 first">
-            <img src="../static/images/logo.jpg" alt="">
+            <img src="/../static/images/logo.jpg" alt="">
 
             <div class="form">
+                <p style="color:white;background-color: #00000022;">Enter only the place you wish to edit</p>
                 <h1 class="form-h">Edit Task Details</h1>
                 <p class="form-p">Fine-tune Task Parameters and Modify Task Details</p>
-                <form action="">
+                <form action="/project/{{ tad }}/edit" method="post">
                     <label for="name" class="inp">Task Name</label><br>
                     <input type="text" name="name" class="inpu" placeholder="Enter your project name"><br>
                     <label for="desciption" class="inp">Description</label><br>

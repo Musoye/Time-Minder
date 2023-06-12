@@ -14,13 +14,12 @@ url_2 = 'http://127.0.0.1:5002/notify'
 
 def change_dic(dic):
     """A function that remove dic key null"""
-    lis = []
-    for key in dic:
-        if dic[key] is None:
-            lis.append(key)
-    for i, v in enumerate(lis):
-        del dic[v]
-    return dic
+    new_dic = {}
+    for key, value in dic.items():
+        if dic[key] is not None and len(dic[key]) > 0:
+            new_dic[key] = value
+    return (new_dic)
+
 
 @app.route('/auth/signup')
 def signup():
@@ -60,7 +59,6 @@ def auth_login():
         password = entry['password']
         password = md5(password.encode()).hexdigest().lower()
         result = req.get('{}/users'.format(url_1)).json()
-        print(result)
         for user in result:
             if user.get('email') == username:
                 if user.get('password') == password:
@@ -247,6 +245,11 @@ def tasks_pro(project_id):
     request = req.get('{}/projects/{}/tasks'.format(url_1, prd)).json()
     return render_template('task.html', project=request, prd=prd)
 
+@app.route('/project/<task_id>/edit')
+def task_edition_page(task_id):
+    """The page for editting the task"""
+    return render_template('edittask.html', tad=task_id)
+
 @app.route('/project/<task_id>/edit', methods=['POST'])
 def task_edition(task_id):
     """Edition of a Task"""
@@ -256,23 +259,37 @@ def task_edition(task_id):
         if request.method == 'POST':
             entry = request.form
             new_pro = {}
-            new_pro['name'] = entry.get('name')
-            new_pro['description'] = entry.get('description')
-            new_pro['expiry_date'] = entry.get('expiry')
-            new_pro['user_id'] = uid
-            new_pro['status'] = entry.get('status')
-            result = req.put('{}/tasks/{}'.format(url_1, tad), json=new_pro)
+            new_pro['name'] = entry.get('name', None)
+            new_pro['description'] = entry.get('description', None)
+            new_pro['expiry_date'] = entry.get('expiry', None)
+            if new_pro.get('expiry_date') is not None and len(new_pro.get('expiry_date')) > 0:
+                submitted_date = datetime.strptime(new_pro.get('expiry_date'), '%Y-%m-%d').date()
+                default_time = datetime.min.time()
+                new_pro['expiry_date'] = str(datetime.combine(submitted_date, default_time))
+            new_pro['status'] = entry.get('status', None)
+            new_pr =  change_dic(new_pro)
+            result = req.put('{}/tasks/{}'.format(url_1, tad), json=new_pr)
             print(result.status_code)
-            if result.status_code == 201:
+            if result.status_code == 200:
                 return redirect(url_for('dashboard'))
             else:
                 return redirect(url_for('login'))
     return redirect(url_for('login'))
 
+@app.route('/task/<task_id>')
+def each_task(task_id):
+    """To display information about each task"""
+    result = req.get('{}/tasks/{}'.format(url_1, task_id)).json()
+    result["created_at"] = datetime.strptime(result.get("created_at"), "%Y-%m-%dT%H:%M:%S.%f")
+    result["expiry_date"] = datetime.strptime(result.get("expiry_date"), "%Y-%m-%dT%H:%M:%S.%f")
+    return render_template('eachtask.html', pro=result)
+
 @app.route('/logout')
 def sign_out():
     """The sign out handler"""
     session.pop('user', None)
+    session.pop('email', None)
+    session.pop('first', None)
     return redirect(url_for('login'))
 
 

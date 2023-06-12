@@ -16,6 +16,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Sora:wght@200;400;600&display=swap"
         rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script>
+            window.onload = function() {
+                const url_1 = 'http://127.0.0.1:5001/api';
+        
+                // Function to delete project
+                function TaskDelete(element) {
+                    const d = $(element).data('id');
+                    console.log(d);
+                    $.ajax({
+                        url: url_1 + '/tasks/' + d,
+                        method: 'DELETE',
+                        success: function() {
+                            location.reload();
+                            alert('The project has successfully been deleted.');
+                        },
+                        error: function() {
+                            alert("The project cannot be deleted.");
+                        }
+                    });
+                }
+        
+                // Usage
+                $('.del-task').click(function() {
+                    TaskDelete(this);
+                });
+            };
+        </script>
 
     <link rel="stylesheet" href="../static/css/index.css" />
     <link rel="stylesheet" href="../static/css/login.css">
@@ -45,12 +73,12 @@
                 {% for pro in project %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td><a href="">{{ pro.name }}</a></td>
+                    <td><a href="/task/{{ pro.id }}">{{ pro.name }}</a></td>
                     <td>{{ pro.created_at}}</td>
                     <td>{{ pro.expiry_date }}</td>
                     <td>{{ pro.status }}</td>
-                    <td><a href="" class="btn btn-primary btn-md">Edit</a></td>
-                    <td><a href="" class="btn btn-primary btn-md">Delete</a></td>
+                    <td><a href="/project/{{ pro.id }}/edit" class="btn btn-primary btn-md">Edit</a></td>
+                    <td><button data-id="{{ pro.id }}"  class="btn btn-primary btn-md del-task">Delete</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
