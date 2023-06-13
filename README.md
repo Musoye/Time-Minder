@@ -8,7 +8,7 @@
 
 ## Description / Overview
 
-A project management tool is a software application that helps teams manage tasks and projects by providing a centralized platform for creating, assigning, tracking, and prioritizing tasks.
+A project management tool is a software application that helps teams manage tasks and projects by providing a centralized platform for creating, assigning, tracking, and prioritizing tasks.  view project here [musoye.tech](https://musoye.tech)
 
 ## Architecture:
 

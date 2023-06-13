@@ -1,3 +1,7 @@
+## Deployed link
+
+[musoye.tech](https://musoye.tech)
+
 ## The Design Link
 
 [figma](https://www.figma.com/file/6dbkRvIMdH0Z3z2hEsklEK/Time-minder?type=design&node-id=86-39805&t=NN6zJgeTC0pek0zf-0)
